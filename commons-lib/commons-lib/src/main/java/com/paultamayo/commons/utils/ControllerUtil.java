@@ -1,4 +1,4 @@
-package com.paultamayo.commons.controllers;
+package com.paultamayo.commons.utils;
 
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatusCode;
@@ -26,7 +26,7 @@ public class ControllerUtil {
 
 			response = new ResponseEntity<>(
 					ApiModel.<T>builder().message(ex.getMessage()).status(StatusRequestEnum.OK).build(),
-					HttpStatusCode.valueOf(400));
+					HttpStatusCode.valueOf(500));
 		}
 
 		return response;

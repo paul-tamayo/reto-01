@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.paultamayo.commons.helpers.ApiModel;
 import com.paultamayo.commons.services.BaseService;
+import com.paultamayo.commons.utils.ControllerUtil;
 
 public abstract class BaseController<T, K> {
-
-	protected abstract Logger getLogger();
-
-	protected abstract BaseService<T, K> getService();
 
 	@DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "/{id}")
 	public ResponseEntity<ApiModel<K>> delete(@PathVariable("id") K id) {
@@ -35,6 +32,10 @@ public abstract class BaseController<T, K> {
 	public ResponseEntity<ApiModel<T>> findBy(@PathVariable("id") K id) {
 		return ControllerUtil.response(getLogger(), () -> getService().findById(id));
 	}
+
+	protected abstract Logger getLogger();
+
+	protected abstract BaseService<T, K> getService();
 
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<ApiModel<T>> save(@RequestBody T entry) {
