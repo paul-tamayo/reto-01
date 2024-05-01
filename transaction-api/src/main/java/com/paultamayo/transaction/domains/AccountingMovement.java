@@ -24,20 +24,20 @@ public class AccountingMovement implements Serializable {
 
 	private static final long serialVersionUID = -8658192018818470058L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
 	@Column(name = "account_number")
 	private Long accountNumber;
 
-	@Column(name = "initial_balance")
-	private BigDecimal initialBalance;
+	private Boolean enabled;
 
 	@Column(name = "final_balance")
 	private BigDecimal finalBalance;
 
-	private BigDecimal value;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-	private Boolean enabled;
+	@Column(name = "initial_balance")
+	private BigDecimal initialBalance;
+
+	private BigDecimal value;
 }

@@ -24,17 +24,17 @@ public class Account implements Serializable {
 
 	private static final long serialVersionUID = 6887662880401010582L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long number;
-
 	@Column(name = "account_type_id")
 	private Long accountTypeId;
+
+	private BigDecimal balance;
 
 	@Column(name = "customer_id")
 	private Long customerId;
 
-	private BigDecimal balance;
-
 	private Boolean enabled;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long number;
 }
