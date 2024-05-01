@@ -37,6 +37,12 @@ spring:
         - Path=/customer/api/**
         filters: 
         - StripPrefix=2
+      - id: transaction-api
+        uri: lb://transaction-api
+        predicates:
+        - Path=/transaction/api/**
+        filters: 
+        - StripPrefix=2
         
 management:
   endpoint:

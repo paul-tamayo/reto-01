@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class HomeController {
 
-	@GetMapping(value = "/")
+	@GetMapping(value = "/index")
 	public ResponseEntity<Map<String, String>> index() {
-		return ResponseEntity.ok(Map.of("UP", "HomeController - Index"));
+		return ResponseEntity.ok(Map.of("UP", "Customer - Index"));
 	}
 }

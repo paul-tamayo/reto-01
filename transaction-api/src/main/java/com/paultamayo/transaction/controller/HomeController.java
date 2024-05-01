@@ -13,6 +13,6 @@ public class HomeController {
 
 	@GetMapping(value = "/index")
 	public ResponseEntity<Map<String, String>> index() {
-		return ResponseEntity.ok(Map.of("UP", "HomeController - Index"));
+		return ResponseEntity.ok(Map.of("UP", "Transaction - Index"));
 	}
 }
