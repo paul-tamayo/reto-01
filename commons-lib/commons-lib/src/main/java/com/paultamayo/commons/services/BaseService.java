@@ -14,19 +14,23 @@ public abstract class BaseService<T, K> implements Serializable {
 
 	private static final long serialVersionUID = -2705223468958090729L;
 
-	@Transactional(propagation = Propagation.MANDATORY, rollbackFor = ServiceException.class)
-	public void deleteMandatoryAll() throws ServiceException {
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = ServiceException.class)
+	public K deleteById(K id) throws ServiceException {
 		try {
-			getRepository().deleteAll();
+			getRepository().deleteById(id);
+
+			return id;
 		} catch (Exception ex) {
 			throw new ServiceException(ex, ex.getMessage());
 		}
 	}
 
 	@Transactional(propagation = Propagation.MANDATORY, rollbackFor = ServiceException.class)
-	public void deleteMandatoryById(K id) throws ServiceException {
+	public K deleteMandatoryById(K id) throws ServiceException {
 		try {
 			getRepository().deleteById(id);
+
+			return id;
 		} catch (Exception ex) {
 			throw new ServiceException(ex, ex.getMessage());
 		}
@@ -55,13 +59,13 @@ public abstract class BaseService<T, K> implements Serializable {
 
 	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public T findById(K k) throws ServiceException {
-		Optional<T> t = getRepository().findById(k);
+		Optional<T> optional = getRepository().findById(k);
 
-		if (t.isEmpty()) {
+		if (optional.isEmpty()) {
 			throw new ServiceException("No se ha podido encontrar registros asociados al identificador: " + k);
 		}
 
-		return t.get();
+		return optional.get();
 	}
 
 	@Transactional(propagation = Propagation.NOT_SUPPORTED)
@@ -70,6 +74,15 @@ public abstract class BaseService<T, K> implements Serializable {
 	}
 
 	protected abstract JpaRepository<T, K> getRepository();
+
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = ServiceException.class)
+	public T save(T t) throws ServiceException {
+		try {
+			return getRepository().save(t);
+		} catch (Exception ex) {
+			throw new ServiceException(ex, ex.getMessage());
+		}
+	}
 
 	@Transactional(propagation = Propagation.MANDATORY, rollbackFor = ServiceException.class)
 	public T saveMandatory(T t) throws ServiceException {

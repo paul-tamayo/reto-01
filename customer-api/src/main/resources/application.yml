@@ -11,6 +11,10 @@ spring:
   threads:
     virtual:
       enabled: true
+  datasource:
+    password: demo
+    url: jdbc:postgresql://127.0.0.1:5432/reto-01
+    username: demo
 
 eureka:
   client:
