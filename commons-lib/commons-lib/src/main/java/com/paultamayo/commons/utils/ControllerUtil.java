@@ -9,8 +9,10 @@ import com.paultamayo.commons.helpers.ApiModel;
 import com.paultamayo.commons.helpers.StatusRequestEnum;
 
 import lombok.AccessLevel;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
+@Generated
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ControllerUtil {
 
