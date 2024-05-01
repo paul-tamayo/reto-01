@@ -1,6 +1,7 @@
-package com.paultamayo.customer.domains;
+package com.paultamayo.transaction.domains;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,24 +19,22 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "customer")
-public class Customer implements Serializable {
+@Table(name = "account")
+public class Account implements Serializable {
 
-	private static final long serialVersionUID = -7191184258984837674L;
-
-	private String address;
-
-	private Boolean enabled;
-
-	private String fullname;
+	private static final long serialVersionUID = 6887662880401010582L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long number;
 
-	private String password;
+	@Column(name = "account_type_id")
+	private Long accountTypeId;
 
-	@Column(name = "phonenumber")
-	private String phoneNumber;
+	@Column(name = "customer_id")
+	private Long customerId;
 
+	private BigDecimal balance;
+
+	private Boolean enabled;
 }
