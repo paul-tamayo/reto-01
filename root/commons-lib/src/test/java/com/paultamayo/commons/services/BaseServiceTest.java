@@ -40,15 +40,6 @@ class BaseServiceTest {
 	}
 
 	@Test
-	void test_existsById() {
-		when(repository.existsById(anyLong())).thenReturn(true);
-
-		boolean flag = service.existsById(50L);
-
-		assertTrue(flag);
-	}
-
-	@Test
 	void test_deleteById() throws ServiceException {
 		Long id = 1234567L;
 
@@ -64,6 +55,15 @@ class BaseServiceTest {
 	}
 
 	@Test
+	void test_existsById() {
+		when(repository.existsById(anyLong())).thenReturn(true);
+
+		boolean flag = service.existsById(50L);
+
+		assertTrue(flag);
+	}
+
+	@Test
 	void test_findAll() throws ServiceException {
 		List<Demo> demos = List.of();
 
@@ -72,16 +72,6 @@ class BaseServiceTest {
 		List<Demo> flag = service.findAll();
 
 		assertNotNull(flag);
-	}
-
-	@Test
-	void test_findAllByIdWithException() throws ServiceException {
-		List<Long> ids = List.of(1l, 2l, 3l, 4l);
-		List<Demo> demos = List.of();
-
-		when(repository.findAllById(anyIterable())).thenReturn(demos);
-
-		assertThrows(ServiceException.class, () -> service.findAllById(ids));
 	}
 
 	@Test
@@ -98,10 +88,13 @@ class BaseServiceTest {
 	}
 
 	@Test
-	void test_findByIdWithException() throws ServiceException {
-		when(repository.findById(anyLong())).thenReturn(Optional.empty());
+	void test_findAllByIdWithException() throws ServiceException {
+		List<Long> ids = List.of(1l, 2l, 3l, 4l);
+		List<Demo> demos = List.of();
 
-		assertThrows(ServiceException.class, () -> service.findById(1l));
+		when(repository.findAllById(anyIterable())).thenReturn(demos);
+
+		assertThrows(ServiceException.class, () -> service.findAllById(ids));
 	}
 
 	@Test
@@ -113,6 +106,13 @@ class BaseServiceTest {
 		Demo flag = service.findById(1l);
 
 		assertNotNull(flag);
+	}
+
+	@Test
+	void test_findByIdWithException() throws ServiceException {
+		when(repository.findById(anyLong())).thenReturn(Optional.empty());
+
+		assertThrows(ServiceException.class, () -> service.findById(1l));
 	}
 
 	@Test

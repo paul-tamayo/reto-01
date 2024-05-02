@@ -18,7 +18,7 @@ public class MovementOutput implements Serializable {
 
 	private static final long serialVersionUID = -1359440657124707746L;
 
-	private Long numberAccount;
-
 	private List<AccountingMovementTo> movements;
+
+	private Long numberAccount;
 }

@@ -73,9 +73,9 @@ public class ManagerMovementService {
 			if (balance.compareTo(BigDecimal.ZERO) >= 0) {
 				accountService.updateBalance(entry.numberAccount(), balance);
 
-				AccountingMovement movement = AccountingMovement.builder().accountNumber(entry.numberAccount()).created(LocalDate.now())
-						.enabled("1").finalBalance(balance).initialBalance(account.getBalance()).value(entry.value())
-						.build();
+				AccountingMovement movement = AccountingMovement.builder().accountNumber(entry.numberAccount())
+						.created(LocalDate.now()).enabled("1").finalBalance(balance)
+						.initialBalance(account.getBalance()).value(entry.value()).build();
 				movementService.saveMandatory(movement);
 				movementId = movement.getId();
 			} else {

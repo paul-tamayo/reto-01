@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class AccountingMovementTo implements Serializable {
 
 	private static final long serialVersionUID = -5051603903701558115L;
-	
+
 	private LocalDate created;
 
 	private BigDecimal finalBalance;

@@ -25,6 +25,11 @@ public class AccountService extends BaseService<Account, Long> {
 	@Getter(value = AccessLevel.PROTECTED)
 	private final AccountRepository repository;
 
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
+	public List<Account> findByCustomerId(Long customerId) {
+		return repository.findByCustomerId(customerId);
+	}
+
 	@Transactional(propagation = Propagation.MANDATORY, rollbackFor = ServiceException.class)
 	public int updateBalance(Long numberAccount, BigDecimal newBalance) throws ServiceException {
 		try {
@@ -38,11 +43,6 @@ public class AccountService extends BaseService<Account, Long> {
 		} catch (Exception ex) {
 			throw new ServiceException(ex.getMessage(), ex);
 		}
-	}
-
-	@Transactional(propagation = Propagation.NOT_SUPPORTED)
-	public List<Account> findByCustomerId(Long customerId) {
-		return repository.findByCustomerId(customerId);
 	}
 
 }

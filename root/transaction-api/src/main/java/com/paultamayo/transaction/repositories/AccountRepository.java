@@ -12,9 +12,9 @@ import com.paultamayo.transaction.domains.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Long>, Serializable {
 
+	List<Account> findByCustomerId(Long customerId);
+
 	@Modifying
 	@Query(value = "UPDATE Account a SET a.balance = :newBalance WHERE a.number = :numberAccount")
 	int updateBalance(Long numberAccount, BigDecimal newBalance);
-	
-	List<Account> findByCustomerId(Long customerId);
 }
