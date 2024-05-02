@@ -14,10 +14,10 @@
 
 	<modules>
 		<module>commons-lib</module>
-		<module>spring-eureka-server</module>
-		<module>spring-cloud-gateway</module>
 		<module>customer-api</module>
 		<module>transaction-api</module>
+		<module>spring-eureka-server</module>
+		<module>spring-cloud-gateway</module>		
 	</modules>
 
 </project>
