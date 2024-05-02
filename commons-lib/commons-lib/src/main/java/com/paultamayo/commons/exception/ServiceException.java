@@ -15,6 +15,10 @@ public class ServiceException extends Exception {
 		super(message);
 	}
 
+	public ServiceException(String message, Object... args) {
+		super(String.format(message, args));
+	}
+
 	public ServiceException(Throwable cause, String message) {
 		super(message, cause);
 	}

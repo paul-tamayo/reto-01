@@ -2,6 +2,7 @@ package com.paultamayo.transaction.domains;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,6 +27,8 @@ public class AccountingMovement implements Serializable {
 
 	@Column(name = "account_number")
 	private Long accountNumber;
+
+	private LocalDate created;
 
 	private Boolean enabled;
 

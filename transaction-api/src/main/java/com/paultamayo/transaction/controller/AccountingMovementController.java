@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.paultamayo.commons.controllers.BaseController;
 import com.paultamayo.transaction.domains.AccountingMovement;
-import com.paultamayo.transaction.services.AccountingMovementService;
+import com.paultamayo.transaction.services.entities.AccountingMovementService;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,4 +26,5 @@ public class AccountingMovementController extends BaseController<AccountingMovem
 	public Logger getLogger() {
 		return log;
 	}
+
 }

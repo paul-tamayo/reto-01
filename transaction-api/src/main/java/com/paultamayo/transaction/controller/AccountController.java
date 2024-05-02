@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.paultamayo.commons.controllers.BaseController;
 import com.paultamayo.transaction.domains.Account;
-import com.paultamayo.transaction.services.AccountService;
+import com.paultamayo.transaction.services.entities.AccountService;
 
 import lombok.AccessLevel;
 import lombok.Getter;
