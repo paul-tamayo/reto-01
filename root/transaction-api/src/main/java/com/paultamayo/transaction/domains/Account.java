@@ -32,7 +32,7 @@ public class Account implements Serializable {
 	@Column(name = "customer_id")
 	private Long customerId;
 
-	private Boolean enabled;
+	private String enabled;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -30,7 +30,7 @@ public class AccountingMovement implements Serializable {
 
 	private LocalDate created;
 
-	private Boolean enabled;
+	private String enabled;
 
 	@Column(name = "final_balance")
 	private BigDecimal finalBalance;

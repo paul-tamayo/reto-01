@@ -27,7 +27,7 @@ public class ControllerUtil {
 			log.error(ex.getMessage(), ex);
 
 			response = new ResponseEntity<>(
-					ApiModel.<T>builder().message(ex.getMessage()).status(StatusRequestEnum.OK).build(),
+					ApiModel.<T>builder().message(ex.getMessage()).status(StatusRequestEnum.ERROR).build(),
 					HttpStatusCode.valueOf(500));
 		}
 

@@ -11,9 +11,8 @@ import com.paultamayo.transaction.to.AccountingMovementTo;
 public class AccountingMovementMapper {
 
 	public AccountingMovementTo convertTo(AccountingMovement movement) {
-		return AccountingMovementTo.builder().accountNumber(movement.getAccountNumber())
-				.finalBalance(movement.getFinalBalance()).initialBalance(movement.getInitialBalance())
-				.value(movement.getValue()).build();
+		return AccountingMovementTo.builder().finalBalance(movement.getFinalBalance()).created(movement.getCreated())
+				.initialBalance(movement.getInitialBalance()).value(movement.getValue()).build();
 	}
 
 	public List<AccountingMovementTo> convertToList(List<AccountingMovement> customers) {

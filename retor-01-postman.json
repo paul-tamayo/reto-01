@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "82a0dc8c-00a8-44e4-8679-822555e8df76",
+		"name": "reto-01",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "115331"
+	},
+	"item": [
+		{
+			"name": "customer-crud",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8443/customer/api/clientes/findAll",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"customer",
+								"api",
+								"clientes",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8443/customer/api/clientes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"customer",
+								"api",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": \"Otavalo sn y principal\",\r\n    \"enabled\": \"1\",\r\n    \"fullname\": \"José Lema\",\r\n    \"phoneNumber\": \"098254785\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8443/customer/api/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"customer",
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": \"Otavalo sn y principal\",\r\n    \"enabled\": \"1\",\r\n    \"id\": \"4\",\r\n    \"fullname\": \"José Lema\",\r\n    \"phoneNumber\": \"098254785\",\r\n    \"password\": \"6789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8443/customer/api/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"customer",
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8443/customer/api/clientes/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"customer",
+								"api",
+								"clientes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "account-crud",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8443/transaction/api/cuentas/findAll",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"transaction",
+								"api",
+								"cuentas",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8443/transaction/api/cuentas/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"transaction",
+								"api",
+								"cuentas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountTypeId\": \"1\",\r\n    \"balance\": 0,\r\n    \"customerId\": \"3\",\r\n    \"enabled\": \"1\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8443/transaction/api/cuentas",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"transaction",
+								"api",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountTypeId\": \"1\",\r\n    \"balance\": 100,\r\n    \"customerId\": \"3\",\r\n    \"enabled\": \"1\",\r\n    \"password\": \"1234\",\r\n    \"number\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8443/transaction/api/cuentas",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"transaction",
+								"api",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8443/transaction/api/cuentas/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"transaction",
+								"api",
+								"cuentas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "movements",
+			"item": [
+				{
+					"name": "report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8443/transaction/api/movimientos/reportes?clientId=1&start=2024-01-01&end=2024-05-01",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"transaction",
+								"api",
+								"movimientos",
+								"reportes"
+							],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "1"
+								},
+								{
+									"key": "start",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "end",
+									"value": "2024-05-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numberAccount\": 2,\r\n    \"value\": 1250\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8443/transaction/api/movimientos/registrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"transaction",
+								"api",
+								"movimientos",
+								"registrar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

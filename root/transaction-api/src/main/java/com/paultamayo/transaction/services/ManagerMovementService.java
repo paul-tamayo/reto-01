@@ -41,7 +41,7 @@ public class ManagerMovementService {
 
 		if (Objects.isNull(customer)) {
 			throw new ServiceException("No se ha podido identificar el cliente ingresado.");
-		} else if (!customer.isEnabled()) {
+		} else if ("1".compareTo(customer.getEnabled()) != 0) {
 			throw new ServiceException("El cliente no esta activo.");
 		}
 
@@ -73,8 +73,8 @@ public class ManagerMovementService {
 			if (balance.compareTo(BigDecimal.ZERO) >= 0) {
 				accountService.updateBalance(entry.numberAccount(), balance);
 
-				AccountingMovement movement = AccountingMovement.builder().accountNumber(entry.numberAccount())
-						.enabled(true).finalBalance(balance).initialBalance(account.getBalance()).value(entry.value())
+				AccountingMovement movement = AccountingMovement.builder().accountNumber(entry.numberAccount()).created(LocalDate.now())
+						.enabled("1").finalBalance(balance).initialBalance(account.getBalance()).value(entry.value())
 						.build();
 				movementService.saveMandatory(movement);
 				movementId = movement.getId();

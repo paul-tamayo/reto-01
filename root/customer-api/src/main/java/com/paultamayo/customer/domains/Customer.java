@@ -25,7 +25,7 @@ public class Customer implements Serializable {
 
 	private String address;
 
-	private Boolean enabled;
+	private String enabled;
 
 	private String fullname;
 
