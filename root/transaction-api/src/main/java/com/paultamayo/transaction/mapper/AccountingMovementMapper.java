@@ -2,19 +2,21 @@ package com.paultamayo.transaction.mapper;
 
 import java.util.List;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
+import org.springframework.stereotype.Component;
 
 import com.paultamayo.transaction.domains.AccountingMovement;
 import com.paultamayo.transaction.to.AccountingMovementTo;
 
+@Component
+public class AccountingMovementMapper {
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface AccountingMovementMapper {
+	public AccountingMovementTo convertTo(AccountingMovement movement) {
+		return AccountingMovementTo.builder().accountNumber(movement.getAccountNumber())
+				.finalBalance(movement.getFinalBalance()).initialBalance(movement.getInitialBalance())
+				.value(movement.getValue()).build();
+	}
 
-	AccountingMovementTo convertTo(AccountingMovement movement);
-
-	@Mapping(source = "accountNumber", target = "accountNumber")
-	List<AccountingMovementTo> convertToList(List<AccountingMovement> customers);
+	public List<AccountingMovementTo> convertToList(List<AccountingMovement> customers) {
+		return customers.stream().map(this::convertTo).toList();
+	}
 }
