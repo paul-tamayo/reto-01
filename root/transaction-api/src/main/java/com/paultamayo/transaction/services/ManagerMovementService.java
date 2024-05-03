@@ -76,7 +76,7 @@ public class ManagerMovementService {
 				AccountingMovement movement = AccountingMovement.builder().accountNumber(entry.numberAccount())
 						.created(LocalDate.now()).enabled("1").finalBalance(balance)
 						.initialBalance(account.getBalance()).value(entry.value()).build();
-				movementService.saveMandatory(movement);
+				movement = movementService.saveMandatory(movement);
 				movementId = movement.getId();
 			} else {
 				throw new ServiceException("SALDO NO DISPOINIBLE.");
