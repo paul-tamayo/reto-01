@@ -30,7 +30,7 @@ public class ManagerMovementController {
 	private final ManagerMovementService service;
 
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "reportes")
-	public ResponseEntity<ApiModel<List<MovementOutput>>> register(@RequestParam(name = "clientId") Long clientId,
+	public ResponseEntity<ApiModel<List<MovementOutput>>> generateReport(@RequestParam(name = "clientId") Long clientId,
 			@RequestParam(name = "start") LocalDate start, @RequestParam(name = "end") LocalDate end) {
 		return ControllerUtil.response(log, () -> service.generateAccountState(clientId, start, end));
 	}
