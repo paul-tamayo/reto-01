@@ -3,9 +3,6 @@ package com.paultamayo.transaction.controller;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,25 +10,24 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.paultamayo.transaction.actions.MovementOutput;
 import com.paultamayo.transaction.services.ManagerMovementService;
 import com.paultamayo.transaction.to.AccountingMovementTo;
 
 @AutoConfigureMockMvc
-@WebMvcTest(ManagerMovementController.class)
+@WebFluxTest(ManagerMovementController.class)
 class ManagerMovementControllerTest {
 
 	@MockBean
 	private ManagerMovementService service;
 
 	@Autowired
-	private MockMvc mvc;
+	private WebTestClient mvc;
 
 	@Test
 	void test_generateReport() throws Exception {
@@ -42,9 +38,8 @@ class ManagerMovementControllerTest {
 
 		when(service.generateAccountState(anyLong(), any(), any())).thenReturn(List.of(m1));
 
-		mvc.perform(get("/movimientos/reportes").param("clientId", "1").param("start", "2024-01-01").param("end",
-				"2024-01-30")).andDo(print()).andExpect(status().is2xxSuccessful())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.status").value("OK"));
+		mvc.get().uri(u -> u.path("/movimientos/reportes").queryParam("clientId", "1").queryParam("start", "2024-01-01")
+				.queryParam("end", "2024-01-30").build()).exchange().expectStatus().isOk();
 	}
 
 }
