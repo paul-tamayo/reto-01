@@ -32,7 +32,11 @@ public abstract class BaseService<T, K> implements Serializable {
 	@Transactional(propagation = Propagation.MANDATORY, rollbackFor = ServiceException.class)
 	public K deleteMandatoryById(K id) throws ServiceException {
 		try {
-			getRepository().deleteById(id);
+			if (getRepository().existsById(id)) {
+				getRepository().deleteById(id);
+			} else {
+				throw new ServiceException("No existe un registro para eliminar.");
+			}
 
 			return id;
 		} catch (Exception ex) {

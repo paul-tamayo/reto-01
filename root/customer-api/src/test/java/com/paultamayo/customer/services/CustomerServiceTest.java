@@ -1,4 +1,4 @@
-package com.paultamayo.commons.services;
+package com.paultamayo.customer.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -18,24 +18,23 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.paultamayo.commons.Demo;
-import com.paultamayo.commons.DemoBaseService;
 import com.paultamayo.commons.exception.ServiceException;
+import com.paultamayo.customer.domains.Customer;
+import com.paultamayo.customer.repositories.CustomerRepository;
 
 @ExtendWith(MockitoExtension.class)
-class BaseServiceTest {
+class CustomerServiceTest {
 
 	@Mock
-	private JpaRepository<Demo, Long> repository;
+	private CustomerRepository repository;
 
 	@InjectMocks
-	private DemoBaseService service;
+	private CustomerService service;
 
 	@BeforeEach
 	void init() {
-		service = new DemoBaseService(repository);
+		service = new CustomerService(repository);
 	}
 
 	@Test
@@ -49,11 +48,11 @@ class BaseServiceTest {
 
 	@Test
 	void test_findAll() throws ServiceException {
-		List<Demo> demos = List.of();
+		List<Customer> demos = List.of();
 
 		when(repository.findAll()).thenReturn(demos);
 
-		List<Demo> flag = service.findAll();
+		List<Customer> flag = service.findAll();
 
 		assertNotNull(flag);
 	}
@@ -61,11 +60,11 @@ class BaseServiceTest {
 	@Test
 	void test_findAllById() throws ServiceException {
 		List<Long> ids = List.of(1l);
-		List<Demo> demos = List.of(new Demo());
+		List<Customer> demos = List.of(new Customer());
 
 		when(repository.findAllById(anyIterable())).thenReturn(demos);
 
-		List<Demo> flag = service.findAllById(ids);
+		List<Customer> flag = service.findAllById(ids);
 
 		assertNotNull(flag);
 		assertEquals(1, flag.size());
@@ -74,7 +73,7 @@ class BaseServiceTest {
 	@Test
 	void test_findAllByIdWithException() throws ServiceException {
 		List<Long> ids = List.of(1l, 2l, 3l, 4l);
-		List<Demo> demos = List.of();
+		List<Customer> demos = List.of();
 
 		when(repository.findAllById(anyIterable())).thenReturn(demos);
 
@@ -83,11 +82,11 @@ class BaseServiceTest {
 
 	@Test
 	void test_findById() throws ServiceException {
-		Optional<Demo> demos = Optional.of(new Demo());
+		Optional<Customer> demos = Optional.of(new Customer());
 
 		when(repository.findById(anyLong())).thenReturn(demos);
 
-		Demo flag = service.findById(1l);
+		Customer flag = service.findById(1l);
 
 		assertNotNull(flag);
 	}
@@ -101,11 +100,11 @@ class BaseServiceTest {
 
 	@Test
 	void test_findOptionalById() throws ServiceException {
-		Optional<Demo> demos = Optional.of(new Demo());
+		Optional<Customer> demos = Optional.of(new Customer());
 
 		when(repository.findById(anyLong())).thenReturn(demos);
 
-		Optional<Demo> flag = service.findOptionalById(1l);
+		Optional<Customer> flag = service.findOptionalById(1l);
 
 		assertNotNull(flag);
 		assertTrue(flag.isPresent());
@@ -113,33 +112,33 @@ class BaseServiceTest {
 
 	@Test
 	void test_save() throws ServiceException {
-		Demo demos = Demo.builder().id(1l).build();
+		Customer demos = Customer.builder().id(1l).build();
 
 		when(repository.save(any())).thenReturn(demos);
 
-		Demo flag = service.save(new Demo());
+		Customer flag = service.save(new Customer());
 
 		assertNotNull(flag);
 	}
 
 	@Test
 	void test_saveMandatory() throws ServiceException {
-		Demo demos = Demo.builder().id(1l).build();
+		Customer demos = Customer.builder().id(1l).build();
 
 		when(repository.save(any())).thenReturn(demos);
 
-		Demo flag = service.saveMandatory(new Demo());
+		Customer flag = service.saveMandatory(new Customer());
 
 		assertNotNull(flag);
 	}
 
 	@Test
 	void test_saveMandatoryAll() throws ServiceException {
-		Demo demos = Demo.builder().id(1l).build();
+		Customer demos = Customer.builder().id(1l).build();
 
 		when(repository.saveAll(anyIterable())).thenReturn(List.of(demos));
 
-		List<Demo> flag = service.saveMandatoryAll(List.of(new Demo()));
+		List<Customer> flag = service.saveMandatoryAll(List.of(new Customer()));
 
 		assertNotNull(flag);
 		assertEquals(1, flag.size());
