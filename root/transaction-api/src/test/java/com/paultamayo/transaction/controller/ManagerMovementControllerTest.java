@@ -23,11 +23,11 @@ import com.paultamayo.transaction.to.AccountingMovementTo;
 @WebFluxTest(ManagerMovementController.class)
 class ManagerMovementControllerTest {
 
-	@MockBean
-	private ManagerMovementService service;
-
 	@Autowired
 	private WebTestClient mvc;
+
+	@MockBean
+	private ManagerMovementService service;
 
 	@Test
 	void test_generateReport() throws Exception {
