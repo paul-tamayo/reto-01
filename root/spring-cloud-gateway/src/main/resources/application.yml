@@ -23,7 +23,7 @@ spring:
           lower-case-service-id: true
       routes:
       - id: customer-api
-        uri: lb://CUSTOMER-API
+        uri: lb://customer-api
         predicates:
         - Path=/customer/api/**
         filters: 
@@ -34,12 +34,6 @@ spring:
         - Path=/transaction/api/**
         filters: 
         - StripPrefix=2
-
-logging:
-  level:
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.http.server.reactive: DEBUG
-    org.springframework.web.reactive: DEBUG
         
 management:
   endpoint:
