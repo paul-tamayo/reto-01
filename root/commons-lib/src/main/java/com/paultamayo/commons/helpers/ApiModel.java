@@ -5,6 +5,6 @@ import lombok.Generated;
 
 @Builder
 @Generated
-public record ApiModel<T>(StatusRequestEnum status, String message, T data) {
+public record ApiModel<T extends Object>(StatusRequestEnum status, String message, Object data) {
 
 }

@@ -12,5 +12,5 @@ import com.paultamayo.transaction.to.CustomerTo;
 public interface CustomerClient {
 
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "clientes/{id}")
-	public ApiModel<CustomerTo> findBy(@PathVariable("id") Long id);
+	ApiModel<CustomerTo> findBy(@PathVariable("id") Long id);
 }

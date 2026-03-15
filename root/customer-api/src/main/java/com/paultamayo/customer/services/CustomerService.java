@@ -6,7 +6,6 @@ import com.paultamayo.commons.services.BaseService;
 import com.paultamayo.customer.domains.Customer;
 import com.paultamayo.customer.repositories.CustomerRepository;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +15,7 @@ public class CustomerService extends BaseService<Customer, Long> {
 
 	private static final long serialVersionUID = 2275533959341234672L;
 
-	@Getter(value = AccessLevel.PROTECTED)
+	@Getter
 	private final CustomerRepository repository;
 
 }
