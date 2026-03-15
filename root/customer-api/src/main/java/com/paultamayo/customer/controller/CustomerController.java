@@ -16,19 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-public class CustomerController extends BaseController<Customer, Long> {
+public class CustomerController  {
 
-	
+	@Getter	(access = AccessLevel.PROTECTED)
 	private final CustomerService service;
 
 	@Override
 	public Logger getLogger() {
 		return log;
-	}
-	
-	@Override
-	protected BaseService<Customer, Long> getService() {	
-		return service;
-	}
-
-}
+	}}
