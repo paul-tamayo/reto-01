@@ -8,6 +8,7 @@ eureka:
     initialInstanceInfoReplicationIntervalSeconds: 5
     registryFetchIntervalSeconds: 5
   instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${random.value}
     leaseRenewalIntervalInSeconds: 5
     leaseExpirationDurationInSeconds: 5
     
@@ -18,11 +19,11 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
+          enabled: false
           lower-case-service-id: true
       routes:
       - id: customer-api
-        uri: lb://customer-api
+        uri: lb://CUSTOMER-API
         predicates:
         - Path=/customer/api/**
         filters: 
@@ -33,6 +34,12 @@ spring:
         - Path=/transaction/api/**
         filters: 
         - StripPrefix=2
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
         
 management:
   endpoint:
