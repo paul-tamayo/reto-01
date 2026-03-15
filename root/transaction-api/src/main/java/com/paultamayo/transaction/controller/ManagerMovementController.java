@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.paultamayo.commons.helpers.ApiModel;
-import com.paultamayo.commons.utils.ControllerUtil;
+import com.paultamayo.commons.exception.ServiceException;
 import com.paultamayo.transaction.actions.MovementEntry;
 import com.paultamayo.transaction.actions.MovementOutput;
 import com.paultamayo.transaction.services.ManagerMovementService;
@@ -30,15 +29,16 @@ public class ManagerMovementController {
 	private final ManagerMovementService service;
 
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "reportes")
-	public ResponseEntity<ApiModel<List<MovementOutput>>> generateReport(@RequestParam(name = "clientId") Long clientId,
-			@RequestParam(name = "start") LocalDate start, @RequestParam(name = "end") LocalDate end) {
-		return ControllerUtil.response(log, () -> service.generateAccountState(clientId, start, end));
+	public ResponseEntity<List<MovementOutput>> generateReport(@RequestParam(name = "clientId") Long clientId,
+			@RequestParam(name = "start") LocalDate start, @RequestParam(name = "end") LocalDate end)
+			throws ServiceException {
+		return ResponseEntity.ok(service.generateAccountState(clientId, start, end));
 	}
 
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE }, value = "registrar")
-	public ResponseEntity<ApiModel<Long>> register(@RequestBody MovementEntry entry) {
-		return ControllerUtil.response(log, () -> service.registerMovement(entry));
+	public ResponseEntity<Long> register(@RequestBody MovementEntry entry) throws ServiceException {
+		return ResponseEntity.ok(service.registerMovement(entry));
 	}
 
 }

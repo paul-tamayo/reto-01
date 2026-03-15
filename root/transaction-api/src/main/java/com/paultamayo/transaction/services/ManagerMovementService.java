@@ -37,7 +37,7 @@ public class ManagerMovementService {
 
 	public List<MovementOutput> generateAccountState(Long clientId, LocalDate start, LocalDate end)
 			throws ServiceException {
-		CustomerTo customer = (CustomerTo) customerClient.findBy(clientId).data();
+		CustomerTo customer = customerClient.findBy(clientId);
 
 		if (Objects.isNull(customer)) {
 			throw new ServiceException("No se ha podido identificar el cliente ingresado.");
